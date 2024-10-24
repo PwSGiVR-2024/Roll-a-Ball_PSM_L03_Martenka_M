@@ -16,7 +16,7 @@ public class Collectible : MonoBehaviour
         gameObject.SetActive(false);
         
     }*/
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         other.gameObject.GetComponent<MovementController>().score += 1;
         gameObject.SetActive(false);
@@ -25,7 +25,7 @@ public class Collectible : MonoBehaviour
         {
             print("Zdoby³eœ wszystkie punkty!");
         }
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
