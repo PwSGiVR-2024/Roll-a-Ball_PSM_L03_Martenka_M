@@ -14,16 +14,13 @@ public class ResetPosition : MonoBehaviour {
 
     void Start()
     {
-        // Zapisz pocz¹tkow¹ pozycjê obiektu
         StartPosition = transform.position;
     }
 
     void Update()
     {
-        // SprawdŸ, czy obiekt spad³ poni¿ej okreœlonego poziomu
         if (transform.position.y < maxPosition)
         {
-            // Przywróæ obiekt do pocz¹tkowej pozycji
             RestorePosition();
         }
     }

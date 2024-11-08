@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class MovementController : MonoBehaviour
 {
+    public GameObject finishflag;
     public Text scoreText;
     public Text winText;
     public int score;
@@ -13,6 +14,8 @@ public class MovementController : MonoBehaviour
     public float m_Thrust = 2f;
     public int collects;
     public GameObject WinButton;
+    public Goal goal;
+    Scene currentScene;
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other)
@@ -23,13 +26,27 @@ public class MovementController : MonoBehaviour
             scoreText.text = "Score: " + score;
             other.gameObject.SetActive(false);
             Debug.Log("+PUNKT! Wynik = " + score);
-            if (score == collects)
+            if (currentScene.buildIndex == 1 && score == collects)
             {
-                winText.gameObject.SetActive(true);
-                print("Zdoby³eœ wszystkie punkty!");
-                WinButton.gameObject.SetActive(true);
+                Finish();
             }
         }
+
+        else if(other.tag == "finish")
+        {
+            winText.gameObject.SetActive(true);
+            print("Zdoby³eœ wszystkie punkty!");
+            WinButton.gameObject.SetActive(true);
+        }
+    }
+    private void Finish()
+    {
+        finishflag.SetActive(true);
+    }
+    public void GoalScored()
+    {
+        goal.isGoal = true;
+        Finish();
     }
     public void LoadNextLevel()
     {
@@ -44,11 +61,13 @@ public class MovementController : MonoBehaviour
     {
         //Fetch the Rigidbody from the GameObject with this script attached
         m_Rigidbody = GetComponent<Rigidbody>();
+        currentScene = SceneManager.GetActiveScene();
     }
 
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKey("w"))
         {
             //Apply a force to this Rigidbody in direction of this GameObjects up axis
