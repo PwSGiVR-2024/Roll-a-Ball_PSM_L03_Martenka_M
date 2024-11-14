@@ -16,6 +16,9 @@ public class MovementController : MonoBehaviour
     public GameObject WinButton;
     public Goal goal;
     Scene currentScene;
+    public Collectible collectible;
+    
+    
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other)
@@ -24,7 +27,8 @@ public class MovementController : MonoBehaviour
         {
             score += 1;
             scoreText.text = "Score: " + score;
-            other.gameObject.SetActive(false);
+            /*other.gameObject.SetActive(false);*/
+            
             Debug.Log("+PUNKT! Wynik = " + score);
             if (currentScene.buildIndex == 1 && score == collects)
             {
