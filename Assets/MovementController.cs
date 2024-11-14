@@ -56,6 +56,10 @@ public class MovementController : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void LoadEnding()
+    {
+        SceneManager.LoadScene(3);
+    }
 
     void Start()
     {

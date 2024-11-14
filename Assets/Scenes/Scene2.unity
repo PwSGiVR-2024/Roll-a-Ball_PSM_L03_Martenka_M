@@ -3641,7 +3641,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6939357657630563639, guid: 2e78bb90b0249e3459f4b56902af3c76, type: 3}
         m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
-        m_MethodName: ReturnToMenu
+        m_MethodName: LoadEnding
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5425,7 +5425,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Return to Main Menu
+  m_Text: GO TO ENDING
 --- !u!222 &2115189772
 CanvasRenderer:
   m_ObjectHideFlags: 0
