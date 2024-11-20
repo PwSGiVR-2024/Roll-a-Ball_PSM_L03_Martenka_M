@@ -121,3 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a69e82b4517f3d42b6632597b9ae364, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementcontroller: {fileID: 6939357657630563639, guid: 2e78bb90b0249e3459f4b56902af3c76, type: 3}

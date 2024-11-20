@@ -17,26 +17,50 @@ public class MovementController : MonoBehaviour
     public Goal goal;
     Scene currentScene;
     public Collectible collectible;
-    
-    
+
+
     // Start is called before the first frame update
 
+    /* private void OnTriggerEnter(Collider other)
+     {
+         if (other.tag == "collectible")
+         {
+             score += 1;
+             scoreText.text = "Score: " + score;
+             Collectible collectible = other.GetComponent<Collectible>();
+             other.gameObject.SetActive(false);
+
+             Debug.Log("+PUNKT! Wynik = " + score);
+             if (currentScene.buildIndex == 1 && score == collects)
+             {
+                 Finish();
+             }
+         }
+
+         else if(other.tag == "finish")
+         {
+             winText.gameObject.SetActive(true);
+             print("Zdoby³eœ wszystkie punkty!");
+             WinButton.gameObject.SetActive(true);
+         }
+     }*/
+    public void CollectScore()
+    {
+        // Zwiêksz wynik i zaktualizuj UI
+        score += 1;
+        scoreText.text = "Score: " + score;
+
+        Debug.Log("+PUNKT! Wynik = " + score);
+
+        // SprawdŸ, czy ukoñczono poziom
+        if (currentScene.buildIndex == 1 && score == collects)
+        {
+            Finish();
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "collectible")
-        {
-            score += 1;
-            scoreText.text = "Score: " + score;
-            /*other.gameObject.SetActive(false);*/
-            
-            Debug.Log("+PUNKT! Wynik = " + score);
-            if (currentScene.buildIndex == 1 && score == collects)
-            {
-                Finish();
-            }
-        }
-
-        else if(other.tag == "finish")
+        if (other.tag == "finish")
         {
             winText.gameObject.SetActive(true);
             print("Zdoby³eœ wszystkie punkty!");
