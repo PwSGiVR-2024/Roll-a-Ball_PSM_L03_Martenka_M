@@ -5,12 +5,12 @@ using UnityEngine;
 public class CameraMovement : MonoBehaviour
 {
     private Vector3 start;
-    public GameObject player;
-    public MovementController playerController;
+    private Transform player;
     // Start is called before the first frame update
     void Start()
     {
-      start = (player.transform.position - transform.position);
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        start = (player.transform.position - transform.position);
     }
 
     // Update is called once per frame

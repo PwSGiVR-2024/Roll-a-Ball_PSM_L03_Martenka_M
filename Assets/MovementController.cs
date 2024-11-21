@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,12 @@ public class MovementController : MonoBehaviour
     public int score;
     Rigidbody m_Rigidbody;
     public float m_Thrust = 2f;
-    public int collects;
+    public int maxScore;
     public GameObject WinButton;
     public Goal goal;
     Scene currentScene;
-    public Collectible collectible;
+    public event Action pickupEvent;
+    public GameObject bridge;
 
 
     // Start is called before the first frame update
@@ -48,12 +50,17 @@ public class MovementController : MonoBehaviour
     {
         // Zwiêksz wynik i zaktualizuj UI
         score += 1;
+        /*pickupEvent();*/
         scoreText.text = "Score: " + score;
 
         Debug.Log("+PUNKT! Wynik = " + score);
 
         // SprawdŸ, czy ukoñczono poziom
-        if (currentScene.buildIndex == 1 && score == collects)
+        if (currentScene.buildIndex == 2 && score == maxScore)
+        {
+            bridge.SetActive(true);
+        }
+        if (currentScene.buildIndex == 1 && score == maxScore)
         {
             Finish();
         }
@@ -88,16 +95,7 @@ public class MovementController : MonoBehaviour
     {
         SceneManager.LoadScene(3);
     }
-
-    void Start()
-    {
-        //Fetch the Rigidbody from the GameObject with this script attached
-        m_Rigidbody = GetComponent<Rigidbody>();
-        currentScene = SceneManager.GetActiveScene();
-    }
-
-    // Update is called once per frame
-    void Update()
+    private void Movement()
     {
 
         if (Input.GetKey("w"))
@@ -108,7 +106,7 @@ public class MovementController : MonoBehaviour
         if (Input.GetKey("s"))
         {
             //Apply a force to this Rigidbody in direction of this GameObjects up axis
-            m_Rigidbody.AddForce(new Vector3(0,0,-1) * m_Thrust);
+            m_Rigidbody.AddForce(new Vector3(0, 0, -1) * m_Thrust);
         }
         if (Input.GetKey("d"))
         {
@@ -120,5 +118,19 @@ public class MovementController : MonoBehaviour
             //Apply a force to this Rigidbody in direction of this GameObjects up axis
             m_Rigidbody.AddForce(new Vector3(-1, 0, 0) * m_Thrust);
         }
+    }
+
+    void Start()
+    {
+        //Fetch the Rigidbody from the GameObject with this script attached
+        m_Rigidbody = GetComponent<Rigidbody>();
+        currentScene = SceneManager.GetActiveScene();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Movement();
     } 
 }
