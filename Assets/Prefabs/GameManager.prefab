@@ -44,3 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59ca2309bd2f21649972648e0c1386cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  finishflag: {fileID: 6507320347545695200, guid: 54a8cd334de47f6418d0902f5d808290, type: 3}
+  winText: {fileID: 0}
+  bridge: {fileID: 0}

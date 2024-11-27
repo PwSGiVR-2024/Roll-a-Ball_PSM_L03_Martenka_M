@@ -482,8 +482,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6939357657630563639, guid: 2e78bb90b0249e3459f4b56902af3c76, type: 3}
-        m_TargetAssemblyTypeName: MovementController, Assembly-CSharp
+      - m_Target: {fileID: 7997882216615031096, guid: 1eb24dd8640d390498667236fbc505e2, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: ReturnToMenu
         m_Mode: 1
         m_Arguments:
