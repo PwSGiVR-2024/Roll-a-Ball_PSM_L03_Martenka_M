@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3262759912671922120}
   - component: {fileID: 4335523592923342566}
   - component: {fileID: 2838525306559265561}
-  - component: {fileID: 5572667390152993389}
   - component: {fileID: 6171512996002403521}
+  - component: {fileID: 3377709770521722297}
   m_Layer: 0
   m_Name: Collectible
   m_TagString: collectible
@@ -110,18 +110,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5572667390152993389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5138203692391594395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff1e1b74e20e62146a6d129209999f95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!108 &6171512996002403521
 Light:
   m_ObjectHideFlags: 0
@@ -187,3 +175,15 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!114 &3377709770521722297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5138203692391594395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f80d3ba0e82bb044489974e1ef6252e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
