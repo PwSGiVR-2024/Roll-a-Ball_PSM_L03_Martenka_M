@@ -1,21 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    Vector3 start;
     private Transform player;
-    // Start is called before the first frame update
+    public float distance = 5f;
+    public float mouseSensitivity = 300f;
+    private float yrot = 0f;
+    private float xrot = 0f;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        start = (player.transform.position - transform.position);
+        player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        Cursor.lockState = CursorLockMode.Locked; // Zablokowanie kursora
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.position = (player.transform.position - start);
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+
+        yrot += mouseX;
+        xrot -= mouseY;
+        xrot = Mathf.Clamp(xrot, -90f, 90f);
+
+        Vector3 offset = new Vector3(0, 0, -distance);
+        Quaternion rotation = Quaternion.Euler(xrot, yrot, 0);
+        transform.position = player.position + rotation * offset;
+        transform.LookAt(player);
     }
 }

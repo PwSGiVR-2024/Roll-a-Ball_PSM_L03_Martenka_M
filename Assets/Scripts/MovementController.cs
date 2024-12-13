@@ -5,22 +5,29 @@ using UnityEngine;
 
 public class MovementController : MonoBehaviour
 {
-   
     public int score;
     Rigidbody m_Rigidbody;
     public float m_Thrust = 2f;
     public event Action pickupEvent;
     public event Action finishLevelEvent;
+    public float jumpForce = 5.0f;
+    private bool isGrounded;
+    private Transform cameraTransform;
+
+    void Start()
+    {
+        // Pobierz Rigidbody i transformacjê kamery
+        m_Rigidbody = GetComponent<Rigidbody>();
+        cameraTransform = Camera.main.transform;
+    }
 
     public void CollectScore()
     {
-        // Zwiêksz wynik i zaktualizuj UI
         score += 1;
-
         pickupEvent?.Invoke();
-
         Debug.Log("+PUNKT! Wynik = " + score);
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "finish")
@@ -28,37 +35,42 @@ public class MovementController : MonoBehaviour
             finishLevelEvent?.Invoke();
         }
     }
-    
+
     private void Movement()
     {
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey("w"))
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        forward.y = 0;
+        right.y = 0;
+        forward.Normalize();
+        right.Normalize();
+
+        Vector3 moveDirection = forward * vertical + right * horizontal;
+
+        m_Rigidbody.AddForce(moveDirection * m_Thrust);
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            m_Rigidbody.AddForce(Vector3.forward * m_Thrust);
-        }
-        if (Input.GetKey("s"))
-        {
-            m_Rigidbody.AddForce(new Vector3(0, 0, -1) * m_Thrust);
-        }
-        if (Input.GetKey("d"))
-        {
-            m_Rigidbody.AddForce(new Vector3(1, 0, 0) * m_Thrust);
-        }
-        if (Input.GetKey("a"))
-        {
-            m_Rigidbody.AddForce(new Vector3(-1, 0, 0) * m_Thrust);
+            m_Rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
         }
     }
-
-    void Start()
+    private void OnCollisionEnter(Collision collision)
     {
-        //Fetch the Rigidbody from the GameObject with this script attached
-        m_Rigidbody = GetComponent<Rigidbody>();
+        isGrounded = true;
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        isGrounded = false;
     }
 
     // Update is called once per frame
     void Update()
     {
         Movement();
-    } 
+    }
 }

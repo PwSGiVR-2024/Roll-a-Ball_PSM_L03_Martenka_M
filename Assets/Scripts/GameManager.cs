@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -43,7 +42,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"GameManager: Zebrano punkt! {currentScore}/{maxScore}");
 
-        // SprawdŸ, czy gracz zebra³ wszystkie punkty
         if (currentScore >= maxScore)
         {
             Debug.Log("GameManager: Wszystkie punkty zebrane!");
@@ -67,6 +65,7 @@ public class GameManager : MonoBehaviour
         winText.gameObject.SetActive(true);
         print("Zdoby³eœ wszystkie punkty!");
         WinButton.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
     public void LoadNextLevel()
     {
