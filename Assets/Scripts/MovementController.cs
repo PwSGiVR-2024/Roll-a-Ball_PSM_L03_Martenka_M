@@ -7,7 +7,6 @@ public class MovementController : MonoBehaviour
     Rigidbody m_Rigidbody;
     public float m_Thrust = 2f;
     public event Action pickupEvent;
-    public event Action finishLevelEvent;
     public float jumpForce = 5.0f;
     private bool isGrounded;
     private Transform cameraTransform;
@@ -25,15 +24,6 @@ public class MovementController : MonoBehaviour
         pickupEvent?.Invoke();
         Debug.Log("+PUNKT! Wynik = " + score);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "finish")
-        {
-            finishLevelEvent?.Invoke();
-        }
-    }
-
     private void Movement()
     {
         float horizontal = Input.GetAxis("Horizontal");

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -6,15 +6,14 @@ public class GameManager : MonoBehaviour
 {
     private int maxScore;
     private int currentScore = 0;
-    public GameObject finishflag;
+    public GameObject finishflag; // Nie używane w kodzie, możesz usunąć, jeśli niepotrzebne
     public Text winText;
     public GameObject WinButton;
-    public GameObject bridge;
-    Scene currentScene;
+    public GameObject finish;
 
     void Start()
     {
-        // Znajd� collectibles i ustal maxScore
+        // Znajdź collectibles i ustal maxScore
         GameObject[] collectibles = GameObject.FindGameObjectsWithTag("collectible");
         maxScore = collectibles.Length;
 
@@ -26,14 +25,22 @@ public class GameManager : MonoBehaviour
             if (movementController != null)
             {
                 movementController.pickupEvent += HandleCollectiblePickedUp;
-                movementController.finishLevelEvent += Finish;
             }
         }
         else
         {
             Debug.LogError("Nie znaleziono gracza w scenie!");
         }
-        currentScene = SceneManager.GetActiveScene();
+
+        // Upewnij się, że finish jest domyślnie nieaktywny
+        if (finish != null)
+        {
+            finish.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Nie znaleziono obiektu 'finish' w scenie!");
+        }
     }
 
     private void HandleCollectiblePickedUp()
@@ -45,36 +52,29 @@ public class GameManager : MonoBehaviour
         if (currentScore >= maxScore)
         {
             Debug.Log("GameManager: Wszystkie punkty zebrane!");
-        }
-        if (currentScene.buildIndex == 2 && currentScore == maxScore)
-        {
-            bridge.SetActive(true);
-        }
-        if (currentScore == maxScore)
-        {
-            if (currentScene.buildIndex == 2)
+
+            if (finish != null)
             {
-                bridge.SetActive(true);
+                finish.SetActive(true);
+                Debug.Log("Obiekt 'finish' został aktywowany.");
             }
-            Debug.Log("Warunek spe�niony, uruchamiam Finish()");
-            finishflag.SetActive(true);
+            else
+            {
+                Debug.LogError("Obiekt 'finish' jest null i nie może zostać aktywowany.");
+            }
         }
     }
-    private void Finish()
-    {
-        winText.gameObject.SetActive(true);
-        print("Zdoby�e� wszystkie punkty!");
-        WinButton.gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-    }
+
     public void LoadNextLevel()
     {
         SceneManager.LoadScene(2);
     }
+
     public void ReturnToMenu()
     {
         SceneManager.LoadScene(0);
     }
+
     public void LoadEnding()
     {
         SceneManager.LoadScene(3);
