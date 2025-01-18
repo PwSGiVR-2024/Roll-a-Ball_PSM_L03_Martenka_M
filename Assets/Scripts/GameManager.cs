@@ -6,10 +6,10 @@ public class GameManager : MonoBehaviour
 {
     private int maxScore;
     private int currentScore = 0;
-    public GameObject finishflag; // Nie używane w kodzie, możesz usunąć, jeśli niepotrzebne
+    //public GameObject finishflag; // Nie używane w kodzie, możesz usunąć, jeśli niepotrzebne
     public Text winText;
     public GameObject WinButton;
-    public GameObject finish;
+    private GameObject finish;
 
     void Start()
     {
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Upewnij się, że finish jest domyślnie nieaktywny
+        finish = GameObject.FindGameObjectWithTag("finish");
         if (finish != null)
         {
             finish.SetActive(false);

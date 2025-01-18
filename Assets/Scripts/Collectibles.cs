@@ -9,6 +9,7 @@ public abstract class Collectibles : MonoBehaviour
     private float floatSpeed = 0.7f;
     private float floatAmplitude = 0.2f;
     private Vector3 startPosition;
+    protected GameObject obstacle;
     public abstract void Collect();
     protected void PlayCollectSound()
     {
@@ -20,7 +21,7 @@ public abstract class Collectibles : MonoBehaviour
     protected void MovementCollectible()
     {
 
-        transform.Rotate(new Vector3(0, 20, 0) * Time.deltaTime);
+        transform.Rotate(new Vector3(0, 30, 0) * Time.deltaTime);
         Vector3 newPosition = startPosition;
         newPosition.y += Mathf.Sin(Time.time * floatSpeed) * floatAmplitude;
         transform.position = newPosition;
@@ -29,6 +30,7 @@ public abstract class Collectibles : MonoBehaviour
     {
         collect = GameObject.Find("PickUpSound").GetComponent<AudioSource>();
         startPosition = transform.position;
+        obstacle = GameObject.FindGameObjectWithTag("obstacle");
     }
     protected virtual void Update()
     {

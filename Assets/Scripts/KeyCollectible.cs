@@ -1,15 +1,15 @@
 using UnityEngine;
 public class KeyCollectibles : Collectibles
 {
-    public GameObject bridge;
     public override void Collect()
     {
   
     }
     private void OnTriggerEnter(Collider collision)
     {
-        bridge.gameObject.SetActive(true);
+        obstacle.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
+
 }
 
