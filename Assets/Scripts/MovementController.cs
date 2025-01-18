@@ -5,7 +5,7 @@ public class MovementController : MonoBehaviour
 {
     public int score;
     Rigidbody m_Rigidbody;
-    public float m_Thrust = 2f;
+    public float m_Thrust = 5f;
     public event Action pickupEvent;
     public float jumpForce = 5.0f;
     private bool isGrounded;

@@ -6,7 +6,6 @@ public class GameManager : MonoBehaviour
 {
     private int maxScore;
     private int currentScore = 0;
-    //public GameObject finishflag; // Nie używane w kodzie, możesz usunąć, jeśli niepotrzebne
     public Text winText;
     public GameObject WinButton;
     private GameObject finish;
