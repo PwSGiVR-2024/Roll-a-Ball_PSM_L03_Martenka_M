@@ -8,6 +8,7 @@ TagManager:
   - Ball
   - finish
   - obstacle
+  - key
   layers:
   - Default
   - TransparentFX

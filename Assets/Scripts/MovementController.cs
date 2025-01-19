@@ -4,9 +4,11 @@ using UnityEngine;
 public class MovementController : MonoBehaviour
 {
     public int score;
+    public int key;
     Rigidbody m_Rigidbody;
     public float m_Thrust = 5f;
-    public event Action pickupEvent;
+    public event Action PickupEvent;
+    public event Action PickupKeyEvent;
     public float jumpForce = 5.0f;
     private bool isGrounded;
     private Transform cameraTransform;
@@ -21,8 +23,14 @@ public class MovementController : MonoBehaviour
     public void CollectScore()
     {
         score += 1;
-        pickupEvent?.Invoke();
+        PickupEvent?.Invoke();
         Debug.Log("+PUNKT! Wynik = " + score);
+    }
+    public void CollectKey()
+    {
+        key += 1;
+        PickupKeyEvent?.Invoke();
+        Debug.Log("+KLUCZ" + key);
     }
     private void Movement()
     {

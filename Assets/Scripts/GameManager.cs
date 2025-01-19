@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
             MovementController movementController = player.GetComponent<MovementController>();
             if (movementController != null)
             {
-                movementController.pickupEvent += HandleCollectiblePickedUp;
+                movementController.PickupEvent += HandleCollectiblePickedUp;
             }
         }
         else
