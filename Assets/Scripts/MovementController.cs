@@ -46,6 +46,12 @@ public class MovementController : MonoBehaviour
         PickupKeyEvent?.Invoke();
         Debug.Log("+KLUCZ" + key);
     }
+    public void CollectBad()
+    {
+        life -= 1;
+        LostLifeEvent?.Invoke();
+        Debug.Log("Gracz straci³ ¿ycie. Pozosta³e ¿ycia:" + life);
+    }
     private void Movement()
     {
         float horizontal = Input.GetAxis("Horizontal");

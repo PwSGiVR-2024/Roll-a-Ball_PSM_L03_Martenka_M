@@ -9,12 +9,13 @@ public class GoodCollectibles : Collectibles
         if (collision.gameObject.GetComponent<MovementController>() != null)
         {
             collision.gameObject.GetComponent<MovementController>().CollectScore();
-            Collect();
+            PlayCollectSound();
+            gameObject.SetActive(false);
         }
     }
-    public override void Collect()
+   /* public override void Collect()
     {
         PlayCollectSound();
         gameObject.SetActive(false);
-    }
+    }*/
 }

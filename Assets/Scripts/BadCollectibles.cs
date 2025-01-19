@@ -1,17 +1,16 @@
 using UnityEngine;
-public class KeyCollectibles : Collectibles
+public class BadCollectibles : Collectibles
 {
     /*public override void Collect()
     {
-  
+
     }*/
     private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.GetComponent<MovementController>() != null)
         {
-            collision.gameObject.GetComponent<MovementController>().CollectKey();
+            collision.gameObject.GetComponent<MovementController>().CollectBad();
         }
-        obstacle.gameObject.SetActive(false);
         gameObject.SetActive(false);
     }
 
