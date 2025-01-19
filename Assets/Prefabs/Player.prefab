@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1480677399209168326}
   - component: {fileID: 3398793830031947348}
   - component: {fileID: 6939357657630563639}
-  - component: {fileID: 7986057910184471509}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -150,25 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c533ffd73993d2e4f929d7b460032db2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finishflag: {fileID: 0}
-  scoreText: {fileID: 0}
-  winText: {fileID: 0}
   score: 0
+  key: 0
+  life: 3
   m_Thrust: 2
-  collects: 0
-  WinButton: {fileID: 0}
-  goal: {fileID: 0}
-  collectible: {fileID: 0}
---- !u!114 &7986057910184471509
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3926426884929800734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12bc22230b5c7c042a9aaf2740ce37d9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxPosition: -10
+  jumpForce: 5

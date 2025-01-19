@@ -5,21 +5,35 @@ public class MovementController : MonoBehaviour
 {
     public int score;
     public int key;
+    public int life = 3;
     Rigidbody m_Rigidbody;
     public float m_Thrust = 5f;
     public event Action PickupEvent;
+    public event Action LostLifeEvent;
     public event Action PickupKeyEvent;
     public float jumpForce = 5.0f;
     private bool isGrounded;
     private Transform cameraTransform;
+    private Vector3 StartPosition;
+    private float maxPosition = -10f;
 
     void Start()
     {
         // Pobierz Rigidbody i transformacjê kamery
         m_Rigidbody = GetComponent<Rigidbody>();
         cameraTransform = Camera.main.transform;
+        StartPosition = transform.position;
     }
 
+    public void OutOfBounds()
+    {
+        if (transform.position.y < maxPosition)
+        {
+            life -= 1;
+            transform.position = StartPosition;
+            LostLifeEvent?.Invoke();
+        }
+    }
     public void CollectScore()
     {
         score += 1;
@@ -68,5 +82,6 @@ public class MovementController : MonoBehaviour
     void Update()
     {
         Movement();
+        OutOfBounds();
     }
 }

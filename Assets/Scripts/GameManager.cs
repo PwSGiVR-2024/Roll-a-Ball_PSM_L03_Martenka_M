@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
 {
     private int maxScore;
     private int currentScore = 0;
+    [SerializeField]
+    private int life;
+    private int sceneID;
     public Text winText;
     public GameObject WinButton;
     private GameObject finish;
@@ -24,6 +27,7 @@ public class GameManager : MonoBehaviour
             if (movementController != null)
             {
                 movementController.PickupEvent += HandleCollectiblePickedUp;
+                movementController.LostLifeEvent += HandleLifes;
             }
         }
         else
@@ -31,7 +35,6 @@ public class GameManager : MonoBehaviour
             Debug.LogError("Nie znaleziono gracza w scenie!");
         }
 
-        // Upewnij się, że finish jest domyślnie nieaktywny
         finish = GameObject.FindGameObjectWithTag("finish");
         if (finish != null)
         {
@@ -41,6 +44,11 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogError("Nie znaleziono obiektu 'finish' w scenie!");
         }
+
+        Scene currentScene = SceneManager.GetActiveScene();
+        sceneID = currentScene.buildIndex;
+
+        life = 3;
     }
 
     private void HandleCollectiblePickedUp()
@@ -65,9 +73,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void HandleLifes()
+    {
+        life--;
+
+        Debug.Log($"Gracz stracił życie. Pozostałe życia: {life}");
+
+        if (life <= 0)
+        {
+            Debug.Log("brak żyć");
+            SceneManager.LoadScene(sceneID);
+        }
+    }
+
+
     public void LoadNextLevel()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(sceneID + 1);
     }
 
     public void ReturnToMenu()

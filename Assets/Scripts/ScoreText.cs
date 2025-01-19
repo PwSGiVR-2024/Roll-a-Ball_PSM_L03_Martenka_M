@@ -5,9 +5,11 @@ public class ScoreText : MonoBehaviour
 {
     public Text scoreText; // Referencja do UI Text
     public Text keyText;
+    public Text lifesText;
     private MovementController playerController;
     private int max;
     private int keymax;
+    private int startLifes;
 
 
     private void UpdateScore()
@@ -17,6 +19,7 @@ public class ScoreText : MonoBehaviour
             // Aktualizuj tekst z wynikiem
             scoreText.text = "Score: " + playerController.score + "/" + max;
             keyText.text = "Keys: " + playerController.key + "/" + keymax;
+            lifesText.text = "Lifes: " + playerController.life + "/" + startLifes;
 
         }
     }
@@ -33,6 +36,8 @@ public class ScoreText : MonoBehaviour
         
         GameObject[] key = GameObject.FindGameObjectsWithTag("key");
         keymax = key.Length;
+
+        startLifes = playerController.life;
 
         playerController.PickupKeyEvent += UpdateScore;
 
