@@ -9,6 +9,7 @@ TagManager:
   - finish
   - obstacle
   - key
+  - Water
   layers:
   - Default
   - TransparentFX
