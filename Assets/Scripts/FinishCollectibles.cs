@@ -7,11 +7,7 @@ public class FinishCollectibles : Collectibles
     public Text winText;
     public GameObject WinButton;
     public event Action finishLevelEvent;
-    /*public override void Collect()
-    {
-
-    }*/
-
+  
     private void OnTriggerEnter(Collider collision)
     {
         finishLevelEvent?.Invoke();

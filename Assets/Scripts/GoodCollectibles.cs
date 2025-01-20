@@ -13,9 +13,4 @@ public class GoodCollectibles : Collectibles
             gameObject.SetActive(false);
         }
     }
-   /* public override void Collect()
-    {
-        PlayCollectSound();
-        gameObject.SetActive(false);
-    }*/
 }

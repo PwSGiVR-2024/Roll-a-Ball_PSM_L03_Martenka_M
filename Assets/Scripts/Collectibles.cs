@@ -10,7 +10,6 @@ public abstract class Collectibles : MonoBehaviour
     private float floatAmplitude = 0.2f;
     private Vector3 startPosition;
     protected GameObject obstacle;
-   // public abstract void Collect();
     protected void PlayCollectSound()
     {
         if (collect != null)
