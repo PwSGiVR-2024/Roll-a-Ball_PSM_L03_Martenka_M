@@ -6,11 +6,15 @@ public class MovementController : MonoBehaviour
     public int score;
     public int key;
     public int life = 3;
+    public int TaskScore;
+    public int TaskScore2;
     Rigidbody m_Rigidbody;
     public float m_Thrust = 5f;
     public event Action PickupEvent;
     public event Action LostLifeEvent;
     public event Action PickupKeyEvent;
+    public event Action PickupTaskObject;
+    public event Action PickupTaskObject2;
     public float jumpForce = 5.0f;
     private bool isGrounded;
     private Transform cameraTransform;
@@ -39,6 +43,16 @@ public class MovementController : MonoBehaviour
         score += 1;
         PickupEvent?.Invoke();
         Debug.Log("+PUNKT! Wynik = " + score);
+    }
+    public void CollectTaskScore()
+    {
+        TaskScore += 1;
+        PickupTaskObject?.Invoke();
+    }
+    public void CollectTaskScore2()
+    {
+        TaskScore2 += 1;
+        PickupTaskObject2?.Invoke();
     }
     public void CollectKey()
     {
@@ -74,15 +88,31 @@ public class MovementController : MonoBehaviour
             isGrounded = false;
         }
     }
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Water"))
+        {
+            life -= 1;
+            transform.position = StartPosition;
+            LostLifeEvent?.Invoke();
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        isGrounded = true;
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            isGrounded = true;
+        }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        isGrounded = false;
+        if (collision.gameObject.CompareTag("ground"))
+        {
+            isGrounded = false;
+        }
     }
+
 
     // Update is called once per frame
     void Update()

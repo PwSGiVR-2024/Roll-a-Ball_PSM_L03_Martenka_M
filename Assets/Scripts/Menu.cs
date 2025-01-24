@@ -36,6 +36,10 @@ public class Menu : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void LoadThirdLevel()
+    {
+        SceneManager.LoadScene(3);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

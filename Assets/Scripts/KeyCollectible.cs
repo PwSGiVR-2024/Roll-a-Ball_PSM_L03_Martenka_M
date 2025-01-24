@@ -6,6 +6,7 @@ public class KeyCollectibles : Collectibles
         if (collision.gameObject.GetComponent<MovementController>() != null)
         {
             collision.gameObject.GetComponent<MovementController>().CollectKey();
+            PlayCollectSound();
         }
         obstacle.gameObject.SetActive(false);
         gameObject.SetActive(false);

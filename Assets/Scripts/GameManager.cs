@@ -9,9 +9,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int life;
     private int sceneID;
-    public Text winText;
-    public GameObject WinButton;
     private GameObject finish;
+    private AudioSource LostLifeSound;
 
     void Start()
     {
@@ -49,6 +48,7 @@ public class GameManager : MonoBehaviour
         sceneID = currentScene.buildIndex;
 
         life = 3;
+        LostLifeSound = GameObject.Find("LostLifeSound").GetComponent<AudioSource>();
     }
 
     private void HandleCollectiblePickedUp()
@@ -75,8 +75,12 @@ public class GameManager : MonoBehaviour
 
     private void HandleLifes()
     {
+        
         life--;
-
+        if (LostLifeSound != null)
+        {
+            LostLifeSound.Play();
+        }
         Debug.Log($"Gracz stracił życie. Pozostałe życia: {life}");
 
         if (life <= 0)
@@ -99,6 +103,6 @@ public class GameManager : MonoBehaviour
 
     public void LoadEnding()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 }

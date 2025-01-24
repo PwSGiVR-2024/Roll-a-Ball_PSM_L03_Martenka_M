@@ -17,9 +17,9 @@ public class ScoreText : MonoBehaviour
         if (playerController != null)
         {
             // Aktualizuj tekst z wynikiem
-            scoreText.text = "Score: " + playerController.score + "/" + max;
-            keyText.text = "Keys: " + playerController.key + "/" + keymax;
-            lifesText.text = "Lifes: " + playerController.life + "/" + startLifes;
+            scoreText.text = playerController.score + "/" + max;
+            keyText.text = playerController.key + "/" + keymax;
+            lifesText.text = playerController.life + "/" + startLifes;
 
         }
     }

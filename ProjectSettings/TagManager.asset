@@ -10,6 +10,14 @@ TagManager:
   - obstacle
   - key
   - Water
+  - NPC_key
+  - NPC_woman
+  - NPC_man
+  - rydz
+  - Rydze
+  - can
+  - ground
+  - CanReward
   layers:
   - Default
   - TransparentFX
